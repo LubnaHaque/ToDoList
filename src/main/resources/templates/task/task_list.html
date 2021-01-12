@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Task List</title>
+</head>
+<body>
+    <div th:switch="${taskList}">
+        <h2 th:case="null">No Task added yet</h2>
+
+        <div th:case="*">
+            <h2>Tasks</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="task : ${taskList}">
+                    <td th:text="${task.id}"></td>
+                    <td th:text="${task.name}"></td>
+                    <td><a th:href="@{'/task/{id}/edit'(id=${task.id})}">Edit</a></td>
+<!--                    <td><a th:href="@{'/task/{id}'(id=${task.id})}">Delete</a></td>-->
+                    <td>
+                        <form action="#" th:action="@{'/task/{id}'(id=${task.id})}"
+                              th:method="delete" >
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a th:href="@{/task/new}">Add New</a></p>
+    </div>
+</body>
+</html>
