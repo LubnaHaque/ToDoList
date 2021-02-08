@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const TASK_BASE_API_URL = "http://localhost:8080";
+const TASK_BASE_API_URL = "http://localhost:8080/api/task";
 
 class TaskService{
-    getTasks(){
+    getAllTasks(){
         return axios.get(TASK_BASE_API_URL);
     }
 }
